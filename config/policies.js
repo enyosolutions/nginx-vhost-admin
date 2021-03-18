@@ -19,10 +19,6 @@ const basicAuth = require('express-basic-auth');
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.policies.html
  */
 
-const auth = basicAuth({
-  users: { 'admin': 'supersecret' }
-});
-
 module.exports.policies = {
 
   /** *************************************************************************
