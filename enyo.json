@@ -1,0 +1,4 @@
+{
+            "projectName":"enyo-server-agent",
+            "jenkins-template": "node"
+          }

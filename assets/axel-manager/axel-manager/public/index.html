@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <title>Axel Management</title>
+    <!-- needed for adaptive design -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-jsonview/1.2.3/jquery.jsonview.min.css"
+    />
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="/axel-manager/vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template-->
+    <link href="/axel-manager/css/sb-admin-2.css" rel="stylesheet" />
+
+    <!--
+    ReDoc doesn't change outer page styles
+    -->
+    <style>
+      :root {
+        --primary: <%= axel.config.framework.primaryColor || '#FE4D17' %>;
+        --secondary: <%= axel.config.framework.secondaryColor || '#0A1351' %>;
+        --background: <%= axel.config.framework.backgroundColor || '#fefefe' %>;
+        --light: <%= axel.config.framework.backgroundColor || '#fefefe' %>;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body id="page-top">
+    <noscript>
+      <strong
+        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without
+        JavaScript enabled. Please enable it to continue.</strong
+      >
+    </noscript>
+    <ul id="events"></ul>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+
+    <script src="/axel-manager/js/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/axel-manager/vendor/jquery/jquery.min.js"></script>
+    <script src="/axel-manager/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jsonview/1.2.3/jquery.jsonview.js"></script>
+    <script src="/axel-manager/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/axel-manager/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/axel-manager/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/axel-manager/js/demo/chart-area-demo.js"></script>
+    <script src="/axel-manager/js/demo/chart-pie-demo.js"></script>
+    <script src="/axel-manager/js/vue/vue.js"></script>
+    <script src="/axel-manager/js/axios.min.js"></script>
+
+    <script>
+              $(function () {
+                $('#jstree').JSONView(
+                  {
+                    config: <%- JSON.stringify(axel.config) %>,
+                    routes: <%- JSON.stringify(axel.config.routes || {}) %>,
+                    controllers: <%- JSON.stringify(axel.controllers) %>,
+                  }
+              , {collapsed: true});
+            });
+            window.App  = window.App  || {};
+            const Swal2 = Swal.mixin({
+                      customClass: {
+                        confirmButton: 'btn btn-primary ml-1',
+                        cancelButton: 'btn btn-danger btn-light'
+                      },
+                      buttonsStyling: false,
+                      reverseButtons: true
+      })
+    </script>
+    <script>
+      window.socket = io();
+      socket._call = function(method, event, options) {
+        const that = this;
+        return new Promise((resolve, reject) => {
+          if (!that) {
+            reject('No socket connection.');
+          } else {
+            that.socket.emit(event, { ...options, method }, (err, data) => {
+              console.log(err, data);
+              if (err) {
+                console.error(err);
+                reject(err);
+              } else {
+                resolve(data);
+              }
+            });
+          }
+        });
+      };
+
+      socket.get = socket._call.bind(undefined, 'GET');
+      socket.post = socket._call.bind(undefined, 'POST');
+      socket.put = socket._call.bind(undefined, 'PUT');
+      socket.delete = socket._call.bind(undefined, 'DELETE');
+      Vue.prototype.$socket = socket;
+
+      socket.on('hello', second => {
+        console.log('second', second);
+      });
+    </script>
+
+
+  </body>
+</html>

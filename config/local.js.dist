@@ -1,0 +1,34 @@
+
+module.exports = {
+
+    environment: process.env.NODE_ENV || 'development',
+    env: '',
+    app: 'nginx vhost manager',
+    allowIpFiltering: true,
+    whitelistedIps: ['127.0.0.1', '::1'],
+    tokenSecret: "",
+    datastores: {
+    },
+
+    mail: {
+        protocol: 'SMTP',
+        options: {
+            host: '127.0.0.1',
+            port: 25
+        },
+        from: 'hello@someuser.com'
+    },
+    devops: {
+        host: '.yourhost.com',
+        servers: {
+          'develop': {
+            host: '62.210.75.68',
+            username: 'jenkins',
+          },
+          'blackstar': {
+            host: '163.172.81.20',
+            username: 'azuremaster',
+          },
+        },
+    },
+};

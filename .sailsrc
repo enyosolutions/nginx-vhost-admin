@@ -1,0 +1,25 @@
+{
+  "generators": {
+    "modules": {
+      "migration": "sails-generate-migration",
+      "db:json": "./api/generators/sails-generate-sequelize-json-fix",
+      "db:fixtures": "./api/generators/sails-generate-sequelize-fixtures",
+      "db:sync": "./node_modules/sails-crud-generators/src/generators/sails-generate-sequelize-sync",
+      "crud-controller": "./node_modules/sails-crud-generators/src/generators/sails-generate-crud-controller",
+      "controller": "./node_modules/sails-crud-generators/src/generators/sails-generate-crud-controller",
+      "schema": "./node_modules/sails-crud-generators/src/generators/sails-generate-schema",
+      "model": "./node_modules/sails-crud-generators/src/generators/sails-generate-schema",
+      "route": "./node_modules/sails-crud-generators/src/generators/sails-generate-route",
+      "api": "./node_modules/sails-crud-generators/src/generators/sails-generate-api"
+    }
+  },
+  "hooks": {
+    "orm": false,
+    "pubsub": false,
+    "blueprints": false,
+    "grunt": false
+  },
+  "paths": {
+    "public": "front/dist"
+  }
+}
