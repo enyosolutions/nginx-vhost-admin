@@ -20,9 +20,9 @@ If you don't need this feature you can disable it by setting `disabledIpFilterin
 An example use case if to allow connecting only from work for example.
 
 
-#### user accouunts
+#### user accounts
 
-You can use http authentification to protect your app. By default is enable and there is a user you can use to connect
+You can use http authentification to protect your app. By default it's enabled and there is a user you can use to connect
 
 ```javascript
  {
