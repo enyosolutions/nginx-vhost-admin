@@ -53,3 +53,8 @@ To disable  this feature simply remove all the accounts from the `users` section
 ![nginx editor](./examples/create.png)
 ![nginx editor](./examples/edit.png)
 
+
+
+<div class="copyright text-center my-auto">
+                <span>Coded with ❤️ by  <a href="https://www.enyosolutions.com" target="_blank">Enyosolutions</a></span> with theme SB ADMIN 2
+              </div>
