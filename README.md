@@ -1,6 +1,6 @@
 # Nginx server admin
 
-Nginx server admin is a simple application to help you create and edit virtual hosts on your nginx installation. Deploy it on all your servers and use it to administrate data. It supports Reverse, Html, and Php  templates. If you need more templates please open an issue or better yet create `pull request` with your desired template.
+Nginx server admin is a simple application to help you create and edit virtual hosts on your nginx installation. Deploy it on all your servers and use it to administrate data. It supports proxy, Html, and Php  templates. If you need more templates please open an issue or better yet create `pull request` with your desired template.
 
 ![nginx editor](./examples/homepage.png)
 
