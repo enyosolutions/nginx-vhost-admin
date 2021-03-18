@@ -37,7 +37,10 @@ You can use http authentification to protect your app. By default it's enabled a
   ```
 
 You can add more users and change passwords.
-To disable  this feature simply remove all the accounts from the `users` section.
+
+> ⚠️  You should change the default password to something else.
+
+To disable this feature simply remove all the accounts from the `users` section.
 
 
 ### Installaton
