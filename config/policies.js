@@ -1,3 +1,6 @@
+const basicAuth = require('express-basic-auth');
+
+
 /**
  * Policy Mappings
  * (sails.config.policies)
@@ -16,6 +19,9 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.policies.html
  */
 
+const auth = basicAuth({
+  users: { 'admin': 'supersecret' }
+});
 
 module.exports.policies = {
 
@@ -28,7 +34,7 @@ module.exports.policies = {
 
   // '*': true,
   // eslint-disable-next-line global-require
-  '*': ['isAuthorized', require('compression')(), 'hasCorrectIp'],
+  '*': ['isAuthorized', require('compression')(), 'hasCorrectIp', 'hasAccount'],
   NginxController: {
     '*': ['isAuthorized']
   },

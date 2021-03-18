@@ -31,14 +31,9 @@ module.exports.routes = {
    * `assets` directory)                                                      *
    *                                                                          *
    ************************************************************************** */
-
-  '/legacy': {
-    view: 'pages/homepage'
-  },
-
   '/': {
     view: 'index',
-    policy: 'hasCorrectIp'
+    policy: 'hasAccount'
   },
 
 
@@ -72,7 +67,7 @@ module.exports.routes = {
   'GET /api/nginx_reverse': 'NginxReverseController.list',
   'GET /api/nginx_reverse/:id': 'NginxReverseController.get',
   'PUT /api/nginx_reverse/ssl': 'NginxReverseController.addSsl',
-  'POST /api/nginx_reverse': 'NginxReverseController.post',
+  'POST /api/nginx_reverse': 'NginxReverseController.nginxCreate',
   'PUT /api/nginx_reverse/:id': 'NginxReverseController.put',
   'DELETE /api/nginx_reverse/:id': 'NginxReverseController.delete',
 

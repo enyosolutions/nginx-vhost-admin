@@ -34,6 +34,7 @@
     "ejs": "~0.8.4",
     "eslint": "^4.19.1",
     "express": "^4.16.3",
+    "express-basic-auth": "^1.2.0",
     "hash-sum": "^1.0.2",
     "js-base64": "^2.4.9",
     "json-stringify-safe": "^5.0.1",

@@ -1,10 +1,8 @@
 # Nginx server admin
 
+Nginx server admin is a simple application to help you create and edit virtual hosts on your nginx installation. Deploy it on all your servers and use it to administrate data.
+
 ![nginx editor](./examples/homepage.png)
-
-
-this is a simple application to help you create and edit virtual hosts on your nginx installation. Deploy it on all your servers and use it to administrate data.
-
 
 ### Installaton
 

@@ -4,12 +4,16 @@ module.exports = {
     environment: process.env.NODE_ENV || 'development',
     env: '',
     app: 'nginx vhost manager',
-    allowIpFiltering: true,
-    whitelistedIps: ['127.0.0.1', '::1'],
     tokenSecret: "",
     datastores: {
     },
-
+    security: {
+      allowIpFiltering: true,
+      whitelistedIps: ['127.0.0.1', '::1'],
+      users: {
+        admin: 'nginxAdminHost987654321'
+      },
+    },
     mail: {
         protocol: 'SMTP',
         options: {

@@ -12,6 +12,7 @@
 // const express = require('express');
 
 const express = require('express');
+const basicAuth = require('express-basic-auth');
 
 module.exports.http = {
   /** **************************************************************************
@@ -33,6 +34,7 @@ module.exports.http = {
          ************************************************************************** */
 
     order: [
+
       'cookieParser',
       'session',
       'bodyParser',

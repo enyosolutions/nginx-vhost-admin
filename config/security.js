@@ -2,6 +2,9 @@
 module.exports.security = {
   allowIpFiltering: true,
   whitelistedIps: ['127.0.0.1', '::1'],
+  users: {
+    admin: 'nginxAdminHost987654321'
+  },
   cors: {
     allRoutes: true,
 

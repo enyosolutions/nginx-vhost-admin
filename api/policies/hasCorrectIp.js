@@ -6,7 +6,7 @@
  */
 
 module.exports = function hasCorrectIp(req, res, next) {
-  console.log('requested ip', req.ip, sails.config.security.whitelistedIps);
+  console.log('requested ', req.path, 'with ip', req.ip, sails.config.security.whitelistedIps);
   if (req.ip && sails.config.security && sails.config.security.whitelistedIps && sails.config.security.whitelistedIps.includes(req.ip)) {
     return next();
   }
