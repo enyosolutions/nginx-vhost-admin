@@ -116,7 +116,7 @@ module.exports = {
     try {
       await Nginx.restart();
       resp.status(200).json({
-        body: 'OK',
+        body: 'Restart compled',
       });
     }
     catch (err) {
@@ -136,11 +136,11 @@ module.exports = {
     try {
       await Nginx.addSsl(req.body.host, req.body.redirect);
       resp.status(200).json({
-        body: 'OK',
+        body: 'SSL added',
       });
     }
     catch (err) {
-      return resp.status(500).json(err.message);
+      return resp.status(500).json(err);
     }
   },
 
@@ -157,7 +157,7 @@ module.exports = {
       const id = req.params.id.replace(/\$/g, '.');
       fs.unlinkSync(path.resolve(sails.config.devops.nginxConfigFolder, id), { encoding: 'utf-8' });
       resp.status(200).json({
-        body: 'OK',
+        body: 'Deletion completed',
       });
     }
     catch (err) {
@@ -196,7 +196,7 @@ module.exports = {
       verbose: true,
     }).then((out) => {
       resp.status(200).json({
-        body: 'OK',
+        body: 'Virtual host created',
         ...out
       });
     })

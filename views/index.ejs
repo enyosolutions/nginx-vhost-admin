@@ -734,7 +734,8 @@ If you really need to edit this file, this we suggest you rename it to something
               .get(`/api/nginx_reverse/${host.replace(/\./g, "$")}`)
               .then(({ data }) => {
                 this.currentHost = data.body;
-              });
+              })
+              .catch(this.displayApiError);
           },
 
           restartNginx(host) {
@@ -783,7 +784,8 @@ If you really need to edit this file, this we suggest you rename it to something
               .then(({ data }) => {
                 this.$notify("Config deleted", "success");
                 this.listHosts();
-              });
+              })
+              .catch(this.displayApiError);
               }
             })
           },
@@ -792,9 +794,10 @@ If you really need to edit this file, this we suggest you rename it to something
             this.$http
               .put(`/api/nginx_reverse/ssl`, {host, redirect: true})
               .then(({ data }) => {
-                this.$notify("Config deleted", "success");
+                this.$notify("SSl successfully installed", "success");
                 this.listHosts();
-              });
+              })
+              .catch(this.displayApiError);
           },
 
           resetApiForm() {
@@ -822,11 +825,15 @@ If you really need to edit this file, this we suggest you rename it to something
             }).catch((err) => {
               console.log(err);
               this.isRequesting = false;
-              this.$notify(err.response && err.response.data ? (err.response.data.message || JSON.stringify(err.response.data)) :(err.response ? err.response : err), 'error' );
+              this.displayApiError(err);
 
             });
             return q;
           },
+
+          displayApiError(err) {
+            this.$notify(err.response && err.response.data ? (err.response.data.message || JSON.stringify(err.response.data)) :(err.response ? err.response : err), 'error' );
+          }
         },
       });
 
