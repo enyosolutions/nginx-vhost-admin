@@ -5,7 +5,16 @@ Nginx server admin is a simple application to help you create and edit virtual h
 ![nginx editor](./examples/homepage.png)
 
 
-### Security
+## Installation
+
+- `git clone --depth 1 https://github.com/enyosolutions-team/nginx-vhost-admin.git`
+- `cd nginx-vhost-admin`
+- `npm install`
+- `node app.js`
+
+You can and should put the behind a node process manager, like `pm2`.
+
+## Security
 
 #### ip whitelisting
 By default the access to the virtual hosts is restricted to the local ip address.

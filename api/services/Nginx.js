@@ -306,16 +306,16 @@ module.exports = {
     console.log('restartResult', restartResult);
 
     if (restartResult.code > 0) {
-      return Promise.reject(new Error(restartResult.stderr));
+      return Promise.reject(restartResult.stderr);
     }
     return Promise.resolve();
   },
   async addSsl(host, redirect) {
     let restartResult = await shell.exec(`letsencrypt -d ${host} ${redirect ? '--redirect' : ''} && service nginx reload`);
-    console.log('restartResult', restartResult);
+    console.log('SSL error result', restartResult);
 
     if (restartResult.code > 0) {
-      return Promise.reject(new Error(restartResult.stderr));
+      return Promise.reject(restartResult.stderr);
     }
     return Promise.resolve();
   },

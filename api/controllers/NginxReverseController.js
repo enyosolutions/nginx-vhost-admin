@@ -116,7 +116,7 @@ module.exports = {
     try {
       await Nginx.restart();
       resp.status(200).json({
-        body: 'Restart compled',
+        body: 'Restart completed',
       });
     }
     catch (err) {

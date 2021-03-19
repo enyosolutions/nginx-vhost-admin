@@ -72,6 +72,7 @@ If you really need to edit this file, this we suggest you rename it to something
                 src="/images/nginx.png"
                 style="width: 49px; background: white; border-radius: 50%"
                 alt=""
+                :class="isRequesting ? 'fa-spin': ''"
               />
             </div>
             <div class="sidebar-brand-text mx-3">
@@ -246,7 +247,7 @@ If you really need to edit this file, this we suggest you rename it to something
               <div
                 class="d-sm-flex align-items-center justify-content-between mb-4"
               >
-                <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                <h1 class="h3 mb-0 text-gray-800">Dashboard <i class="fa fa-spinner fa-spin" v-if="isRequesting"></i></h1>
                 <div>
                 <a
                   href="#"
@@ -791,13 +792,15 @@ If you really need to edit this file, this we suggest you rename it to something
           },
 
           generateSslHost(host) {
+            this.isRequesting = true;
             this.$http
               .put(`/api/nginx_reverse/ssl`, {host, redirect: true})
               .then(({ data }) => {
                 this.$notify("SSl successfully installed", "success");
                 this.listHosts();
               })
-              .catch(this.displayApiError);
+              .catch(this.displayApiError)
+              .finally(() => this.isRequesting = true);
           },
 
           resetApiForm() {
