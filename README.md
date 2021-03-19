@@ -49,7 +49,7 @@ You can add more users and change passwords.
 
 > ⚠️  You should change the default password to something else.
 
-To disable this feature simply remove all the accounts from the `users` section.
+To disable this feature simply set `users: false` instead of the list of users in your local.js.
 
 
 ### Installaton
