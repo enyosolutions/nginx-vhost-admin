@@ -800,7 +800,7 @@ If you really need to edit this file, this we suggest you rename it to something
                 this.listHosts();
               })
               .catch(this.displayApiError)
-              .finally(() => this.isRequesting = true);
+              .finally(() => this.isRequesting = false);
           },
 
           resetApiForm() {
@@ -835,6 +835,7 @@ If you really need to edit this file, this we suggest you rename it to something
           },
 
           displayApiError(err) {
+            this.isRequesting = true;
             this.$notify(err.response && err.response.data ? (err.response.data.message || JSON.stringify(err.response.data)) :(err.response ? err.response : err), 'error' );
           }
         },
