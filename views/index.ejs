@@ -724,10 +724,13 @@ If you really need to edit this file, this we suggest you rename it to something
           },
 
           listHosts() {
+            this.isRequesting = true;
             this.$http.get("/api/nginx_reverse").then(({ data }) => {
               console.log({ data });
               this.hosts = data.body;
-            });
+              this.isRequesting = false;
+            })
+            .catch(this.displayApiError);
           },
 
           editHost(host) {
@@ -740,6 +743,7 @@ If you really need to edit this file, this we suggest you rename it to something
           },
 
           restartNginx(host) {
+            this.isRequesting = true;
             this.$http
               .post(`/api/nginx_reverse/restart`)
               .then(({ data }) => {
@@ -748,12 +752,14 @@ If you really need to edit this file, this we suggest you rename it to something
               .catch(err => {
                 this.$notify(JSON.stringify(err.response.data), 'error');
               })
+              .finally(() => this.isRequesting = false);
           },
 
           saveHost(currentHost) {
             if (!currentHost) {
               return;
             }
+            this.isRequesting = true;
             return this.$http
               .put(`/api/nginx_reverse/${currentHost.id}?restart=true`, {
                 content: currentHost.content,
@@ -764,7 +770,8 @@ If you really need to edit this file, this we suggest you rename it to something
               .catch((err) => {
                 this.$notify("Error:" + (err.response && err.response.data || err.status), "error");
                 throw err;
-              });
+              })
+              .finally(() => this.isRequesting = false);
           },
 
           async saveHostAndClose(currentHost) {
