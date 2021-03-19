@@ -101,7 +101,7 @@ module.exports = {
     }
     catch (err) {
       console.warn(err);
-      return resp.status(500).json(err.message);
+      return resp.status(500).json(err.message || err);
     }
   },
   /**
@@ -120,7 +120,7 @@ module.exports = {
       });
     }
     catch (err) {
-      return resp.status(500).json(err.message);
+      return resp.status(500).json(err);
     }
   },
 
@@ -162,7 +162,7 @@ module.exports = {
     }
     catch (err) {
       console.warn(err);
-      return resp.status(500).json(err.message);
+      return resp.status(500).json(err.message || err);
     }
   },
 
