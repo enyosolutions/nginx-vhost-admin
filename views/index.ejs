@@ -645,7 +645,7 @@ If you really need to edit this file, this we suggest you rename it to something
     <script>
       Vue.prototype.$http = axios.create({
         baseURL: "/",
-        timeout: 20000,
+        timeout: 200000,
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -793,6 +793,7 @@ If you really need to edit this file, this we suggest you rename it to something
 
           generateSslHost(host) {
             this.isRequesting = true;
+            this.$notify("Generating ssl certificate, this might take a while", 'info');
             this.$http
               .put(`/api/nginx_reverse/ssl`, {host, redirect: true})
               .then(({ data }) => {
