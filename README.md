@@ -1,10 +1,21 @@
-# Nginx server admin
+# Nginx virtual host and proxy admin
 
-Nginx server admin is a simple application to help you create and edit virtual hosts on your nginx installation. Deploy it on all your servers and use it to administrate data. It supports proxy, Html, and Php  templates. If you need more templates please open an issue or better yet create `pull request` with your desired template.
+Nginx server admin is a simple application to help you create and edit virtual hosts on your nginx installation. 
+
+Deploy it on all your servers and use it to administrate data. 
+It supports proxy, Html, and Php  templates. 
+
+If you need more templates please open an issue or better yet create `pull request` with your desired template.
 
 ![nginx editor](./examples/homepage.png)
 
+## why
 
+Even if there are other options out there, most of them require some complicated install, a database or a docker. I wanted something that could integrate into and existing install, or deploy on other server without too much work. 
+
+- no database : data is read directly from nginx config. 
+- no need modifying you config files
+- no docker, so no need encapsulating you docker into a container. 
 ## Installation
 
 - `git clone --depth 1 https://github.com/enyosolutions-team/nginx-vhost-admin.git`
