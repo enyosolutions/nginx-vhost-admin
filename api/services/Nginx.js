@@ -311,7 +311,7 @@ module.exports = {
     return Promise.resolve();
   },
   async addSsl(host, redirect) {
-    let restartResult = await shell.exec(`sudo letsencrypt -d ${host} ${redirect ? '--redirect' : ''} && service nginx reload`);
+    let restartResult = await shell.exec(`sudo letsencrypt -d ${host} --force-renew  ${redirect ? '--redirect' : ''} && service nginx reload`);
     console.log('SSL error result', restartResult);
 
     if (restartResult.code > 0) {

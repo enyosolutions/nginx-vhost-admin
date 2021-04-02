@@ -466,12 +466,6 @@ If you really need to edit this file, this we suggest you rename it to something
                   </select>
                 </div>
 
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Add SSL (certbot)</label>
-                  <input type="checkbox" class="form-control"  aria-describedby="emailHelp" placeholder="" v-model="newHost.ssl">
-                </div>
-
-
                 <div class="form-group" v-if="newHost.type === 'node'">
                   <label for="exampleInputEmail1">Startup script for node </label>
                   <input type="text" class="form-control" id="git" aria-describedby="emailHelp" placeholder="Enter git url" v-model="newHost.startupScript">
@@ -799,16 +793,26 @@ If you really need to edit this file, this we suggest you rename it to something
           },
 
           generateSslHost(host) {
-            this.isRequesting = true;
-            this.$notify("Generating ssl certificate, this might take a while", 'info');
-            this.$http
-              .put(`/api/nginx_reverse/ssl`, {host, redirect: true})
-              .then(({ data }) => {
-                this.$notify("SSl successfully installed", "success");
-                this.listHosts();
-              })
-              .catch(this.displayApiError)
-              .finally(() => this.isRequesting = false);
+              Swal2.fire({title: "Etes vous sur ?",
+             showConfirmButton: true,
+             showCancelButton: true,
+
+          }).then(confirm => {
+            console.log("confirm", confirm)
+              if (confirm && confirm.isConfirmed) {
+                return this.isRequesting = true;
+                this.$notify("Generating ssl certificate, this might take a while", 'info');
+                this.$http
+                  .put(`/api/nginx_reverse/ssl`, {host, redirect: true})
+                  .then(({ data }) => {
+                    this.$notify("SSl successfully installed", "success");
+                    this.listHosts();
+                  })
+                  .catch(this.displayApiError)
+                  .finally(() => this.isRequesting = false);
+              }
+            })
+            .catch(this.displayApiError);
           },
 
           resetApiForm() {
