@@ -1,4 +1,4 @@
 {
-            "projectName":"enyo-server-agent",
+            "projectName":"nginx-vhost-admin",
             "jenkins-template": "node"
           }

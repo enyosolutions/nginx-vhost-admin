@@ -20,8 +20,4 @@ module.exports = {
   models: {
     migrate: 'alter'
   },
-
-  port: (process.env.PORT || process.env.NODE_PORT || 20200),
-  crudForbiddenEndpoints: ['user'],
-  appUrl: ''
 };
