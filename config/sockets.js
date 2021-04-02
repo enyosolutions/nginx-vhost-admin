@@ -144,9 +144,7 @@ module.exports.sockets = {
   handles: {
 
   },
-  onlyAllowOrigins: ['http://www.dev.enyosolutions.com', 'https://www.dev.enyosolutions.com',
-    'https://intranet.enyosolutions.com', 'http://localhost:1903', 'http://localhost:8000',
-    'http://freeboard.enyosolutions.com',
-    'https://freeboard.enyosolutions.com',
+  onlyAllowOrigins: [
+    'http://localhost:1903', 'http://localhost:8000',
   ]
 };

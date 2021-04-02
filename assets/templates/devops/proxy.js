@@ -4,12 +4,16 @@ module.exports = `
 # ------------------------------------------------------------
 
 server {
+    set $server "{{ targetServer || '127.0.0.1' }}";
+    set $forward_scheme         "http";
+    set $port         "{{ appPort }}";
+
     listen 80;
     server_name {{ host }};
     root /apps/{{ appName }};
 
     access_log  /var/log/nginx/{{appName}}_access.log;
-    error_log  /var/log/nginx/{{appName}}_error.log debug;
+    error_log  /var/log/nginx/{{appName}}_error.log error;
 
     location / {
         proxy_set_header   X-Real-IP $remote_addr;

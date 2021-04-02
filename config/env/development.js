@@ -23,6 +23,5 @@ module.exports = {
 
   port: (process.env.PORT || process.env.NODE_PORT || 20200),
   crudForbiddenEndpoints: ['user'],
-  gitHashKey: '21o8fhDWcvjooL8dNtpYA5W-ziCt65VcZ6wK3h34uBKPkDAZCED1O1IAZOEIOIOCQNSJND',
-  appUrl: 'http://dev.enyosolutions.com'
+  appUrl: ''
 };

@@ -223,24 +223,24 @@ function initNginxSite(name, options) {
       }
 
       fs.writeFileSync(`/tmp/${name}`, content);
-      shell.exec(`cp /tmp/${name} ${config.devops.nginxConfigFolder}/${name}`);
+      shell.exec(`sudo cp /tmp/${name} ${config.devops.nginxConfigFolder}/${name}`);
 
       try {
         if (options.verbose) { sails.log('Creating target folder'); }
-        await shell.exec(`mkdir -p ${config.devops.projectFolder}/${name}`);
+        await shell.exec(`sudo mkdir -p ${config.devops.projectFolder}/${name}`);
       } catch (err) {
         if (options.verbose) { sails.log('Target folder already exists'); }
       }
 
       // git repo clone into the folder which will create it at the same time
 
-      let restartResult = await shell.exec('nginx -t && service nginx reload');
+      let restartResult = await shell.exec('sudo nginx -t && service nginx reload');
       if (options.git) {
         const branch = options.branch ? options.branch : (name.split('.') && name.split('.')[1]);
         if (options.verbose) {
           sails.log('Cloning data from git');
         }
-        const out = await shell.exec(`git clone --verbose --progress --branch ${branch || 'develop'} --depth 1 ` +
+        const out = await shell.exec(`sudo git clone --verbose --progress --branch ${branch || 'develop'} --depth 1 ` +
           `${options.git}  ${config.devops.projectFolder}/${name}`);
 
         if (out.code && out.code > 0) {
@@ -259,7 +259,7 @@ function initNginxSite(name, options) {
 
       if (options.type === 'php') {
         await shell.exec(
-          `cd ${config.devops.projectFolder}/${name} && composer install `,
+          `sudo cd ${config.devops.projectFolder}/${name} && composer install `,
           (code, stdout, stderr) => {
             if (code === 0) {
               sails.sockets.broadcast(`app-devops-app-${name}`, 'composer-installed-successfully');
@@ -281,7 +281,7 @@ function initNginxSite(name, options) {
       sails.log('ALL DONE '.green);
 
       if (options.ssl) {
-        await shell.exec(`letsencrypt -d ${name}.enyosolutions.com
+        await shell.exec(`sudo letsencrypt -d ${name}.enyosolutions.com
          --non-interactive --agree-tos --nginx  --redirect &`, (code, stdout, stderr) => {
           if (code === 0) {
             sails.sockets.broadcast(`app-devops-app-${name}`, 'ssl-installed-successfully');
@@ -302,7 +302,7 @@ function initNginxSite(name, options) {
 module.exports = {
   init: initNginxSite,
   async restart() {
-    let restartResult = await shell.exec('nginx -t && service nginx reload');
+    let restartResult = await shell.exec('sudo nginx -t && service nginx reload');
     console.log('restartResult', restartResult);
 
     if (restartResult.code > 0) {
@@ -311,7 +311,7 @@ module.exports = {
     return Promise.resolve();
   },
   async addSsl(host, redirect) {
-    let restartResult = await shell.exec(`letsencrypt -d ${host} ${redirect ? '--redirect' : ''} && service nginx reload`);
+    let restartResult = await shell.exec(`sudo letsencrypt -d ${host} ${redirect ? '--redirect' : ''} && service nginx reload`);
     console.log('SSL error result', restartResult);
 
     if (restartResult.code > 0) {

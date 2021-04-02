@@ -23,7 +23,7 @@ module.exports = {
         from: 'hello@someuser.com'
     },
     devops: {
-        host: '.yourhost.com',
+        host: '',
         servers: {
           'develop': {
             host: '62.210.75.68',
