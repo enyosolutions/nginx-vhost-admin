@@ -8,8 +8,8 @@
   "main": "app.js",
   "scripts": {
     "postinstall": "node scripts/postInstall.js",
-    "pre-commit": "lint-staged",
-    "precommit": "lint-staged",
+    "pre-commit": "husky",
+    "precommit": "husky",
     "debug": "node --inspect app.js",
     "dev": "nodemon --inspect app.js",
     "lint": "./node_modules/eslint/bin/eslint.js api config",
@@ -82,7 +82,8 @@
         "prettier-package-json --write"
       ],
       "api/**/*.js": [
-        "yarn lint:fix"
+        "yarn lint:fix",
+        "git add"
       ]
     }
   },
