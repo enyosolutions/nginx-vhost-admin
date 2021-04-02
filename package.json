@@ -71,6 +71,11 @@
   "engines": {
     "node": ">=9.11.2"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "linters": {
       "package.json": [
