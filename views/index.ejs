@@ -597,7 +597,6 @@ If you really need to edit this file, this we suggest you rename it to something
     </div>
 
     <ul id="events"></ul>
-    <script src="/admin/js/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <!-- Bootstrap core JavaScript-->
@@ -646,37 +645,11 @@ If you really need to edit this file, this we suggest you rename it to something
           "x-enyo-token": "Bearer <%= sails.config.authKey %>",
         },
       });
-      window.socket = io();
-      socket._call = function (method, event, options) {
-        const that = this;
-        return new Promise((resolve, reject) => {
-          if (!that) {
-            reject("No socket connection.");
-          } else {
-            that.socket.emit(event, { ...options, method }, (err, data) => {
-              console.log(err, data);
-              if (err) {
-                console.error(err);
-                reject(err);
-              } else {
-                resolve(data);
-              }
-            });
-          }
-        });
-      };
-
-      socket.get = socket._call.bind(undefined, "GET");
-      socket.post = socket._call.bind(undefined, "POST");
-      socket.put = socket._call.bind(undefined, "PUT");
-      socket.delete = socket._call.bind(undefined, "DELETE");
-      Vue.prototype.$socket = socket;
       App.vue = new Vue({
         el: "#app",
         data: {
           hosts: [],
           routes: null,
-          socket: socket,
           blockingModal: null,
           newApi: {},
           currentHost: {},
@@ -688,13 +661,6 @@ If you really need to edit this file, this we suggest you rename it to something
         },
         mounted() {
           this.listHosts();
-          this.$socket.on("connect", (a) => {
-            this.refreshLists();
-          });
-
-          this.$socket.on("disconnect", (a) => {
-            console.log(a); // false
-          });
         },
         computed: {
           filteredHosts() {
@@ -797,7 +763,6 @@ If you really need to edit this file, this we suggest you rename it to something
              showCancelButton: true,
 
           }).then(confirm => {
-            console.log("confirm", confirm)
               if (confirm && confirm.isConfirmed) {
                 return this.isRequesting = true;
                 this.$notify("Generating ssl certificate, this might take a while", 'info');
@@ -852,9 +817,6 @@ If you really need to edit this file, this we suggest you rename it to something
         },
       });
 
-      socket.on("hello", (second) => {
-        console.log("second", second);
-      });
     </script>
   </body>
 </html>
