@@ -779,7 +779,6 @@ If you really need to edit this file, this we suggest you rename it to something
              showCancelButton: true,
 
           }).then(confirm => {
-            console.log("confirm", confirm)
               if (confirm && confirm.isConfirmed) {
                  this.$http
               .delete(`/api/nginx_reverse/${id}`)

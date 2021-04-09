@@ -7,14 +7,14 @@
   "version": "0.1.0",
   "main": "app.js",
   "scripts": {
-    "postinstall": "node scripts/postInstall.js",
     "debug": "node --inspect app.js",
     "dev": "nodemon --inspect app.js",
+    "postinstall": "node scripts/postInstall.js",
     "lint": "./node_modules/eslint/bin/eslint.js api config",
     "lint:fix": "./node_modules/eslint/bin/eslint.js api config --fix",
     "lint:fix:q": "./node_modules/eslint/bin/eslint.js api config --fix --quiet",
-    "start": "node app.js",
     "serve": "node app.js",
+    "start": "node app.js",
     "test": "node ./node_modules/mocha/bin/mocha test/bootstrap.test.js test/integration/**/*.test.js"
   },
   "dependencies": {
