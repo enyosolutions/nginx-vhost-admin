@@ -764,19 +764,18 @@ If you really need to edit this file, this we suggest you rename it to something
 
           }).then(confirm => {
               if (confirm && confirm.isConfirmed) {
-                return this.isRequesting = true;
+                this.isRequesting = true;
                 this.$notify("Generating ssl certificate, this might take a while", 'info');
-                this.$http
+                return this.$http
                   .put(`/api/nginx_reverse/ssl`, {host, redirect: true})
                   .then(({ data }) => {
                     this.$notify("SSl successfully installed", "success");
                     this.listHosts();
-                  })
-                  .catch(this.displayApiError)
-                  .finally(() => this.isRequesting = false);
+                  });
               }
             })
-            .catch(this.displayApiError);
+            .catch(this.displayApiError)
+              .finally(() => this.isRequesting = false);
           },
 
           resetApiForm() {
