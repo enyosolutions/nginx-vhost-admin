@@ -6,6 +6,7 @@
  */
 
 const fs = require('fs');
+const util = require('util');
 const path = require('path');
 const NginxParser = require('@webantic/nginx-config-parser');
 const Nginx = require('../services/Nginx');
