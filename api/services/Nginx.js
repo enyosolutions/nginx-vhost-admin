@@ -118,33 +118,6 @@ function initNginxSite(name, options) {
     try {
       if (!options.port && options.type === 'proxy') {
         availablePort = await findPort();
-        try {
-          if (HostsDB) {
-            await HostsDB.update({
-              name
-            }, {
-              ...options,
-              name,
-              appName,
-              host,
-              server: sails.config.agentName || sails.config.app,
-            }, {
-              upsert: true
-            }).catch((err) => {
-              console.warn({
-                name,
-                appName,
-                host,
-                type: options.type,
-                port,
-                ...options
-              }, Tools.safeError(err));
-            });
-          }
-        } catch (e) {
-          console.warn('Reject', e);
-          reject('Error while saving config'.red);
-        }
       }
 
       if (options.verbose) { sails.log('creating template for type %s', options.type); }
