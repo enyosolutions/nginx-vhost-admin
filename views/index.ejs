@@ -437,6 +437,18 @@ If you really need to edit this file, this we suggest you rename it to something
                 </div>
 
                 <div class="form-group">
+                  <label for="exampleFormControlSelect1">Vhost type <span class="text-danger">*</span></label>
+                  <select class="form-control" id="exampleFormControlSelect1" v-model="newHost.type">
+                  <option></option>
+                    <option value="proxy">php</option>
+                    <option value="html">static serve (html)</option>
+                    <option value="proxy">proxy</option>
+                  </select>
+                </div>
+
+                <div class="form-group"
+                v-if=" newHost.type !== 'html' "
+                >
                   <label for="exampleFormControlSelect1">Target server <span class="text-danger">*</span></label>
                   <select class="form-control" id="exampleFormControlSelect1" v-model="newHost.agent">
                     <option v-for="(server, key) in servers" :value="server.host">{{ key }} - {{ server.host }}</option>
@@ -448,23 +460,13 @@ If you really need to edit this file, this we suggest you rename it to something
                   </template>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group"
+                v-if=" newHost.type !== 'html' "
+                >
                   <label for="">Port</label>
                   <input type="text" class="form-control"  aria-describedby="emailHelp" placeholder="" v-model="newHost.port">
                 </div>
 
-
-
-
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">Vhost type <span class="text-danger">*</span></label>
-                  <select class="form-control" id="exampleFormControlSelect1" v-model="newHost.type">
-                  <option></option>
-                    <option>php</option>
-                    <option>static serve (html)</option>
-                    <option>proxy</option>
-                  </select>
-                </div>
 
                 <div class="form-group" v-if="newHost.type === 'node'">
                   <label for="exampleInputEmail1">Startup script for node </label>
@@ -476,6 +478,7 @@ If you really need to edit this file, this we suggest you rename it to something
                   <input type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Defaults to '{projects Folder}/{appName}/dist'" v-model="newHost.appRootFolder">
                 </div>
 
+                <template v-if="newHost && newHost.host === 'localhost'">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Repository</label>
                   <input type="url" class="form-control" id="git" aria-describedby="emailHelp" placeholder="Enter git url" v-model="newHost.git">
@@ -486,7 +489,7 @@ If you really need to edit this file, this we suggest you rename it to something
                   <label for="">Branch to checkout (defaults to develop)</label>
                   <input type="text" class="form-control" id="git" aria-describedby="emailHelp" placeholder="Enter git url" v-model="newHost.branch">
                 </div>
-
+              </template>
               </form>
             </div>
             </div>
@@ -656,7 +659,7 @@ If you really need to edit this file, this we suggest you rename it to something
           newHost: {},
           isEditingHost: false,
           isRequesting: false,
-          servers: <%- JSON.stringify(sails.config.devops.servers, null, 2) %>,
+          servers: <%- JSON.stringify({...sails.config.devops.servers, localhost: {host: 'localhost'}}, null, 2) %>,
           searchInput: '',
         },
         mounted() {
