@@ -116,7 +116,7 @@ function initNginxSite(name, options) {
 
     let port;
     try {
-      if (!options.port) {
+      if (!options.port && options.type === 'proxy') {
         availablePort = await findPort();
         try {
           if (HostsDB) {
@@ -142,7 +142,7 @@ function initNginxSite(name, options) {
             });
           }
         } catch (e) {
-          console.warn(e.message);
+          console.warn('Reject', e);
           reject('Error while saving config'.red);
         }
       }
