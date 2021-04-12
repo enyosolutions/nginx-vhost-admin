@@ -787,17 +787,15 @@ If you really need to edit this file, this we suggest you rename it to something
           },
 
           createNginxInstance(name, options = {}) {
-            var that = this;
             this.isRequesting = true;
             this.$notify(`Creating NGINX vhost ${this.newHost.name} ...`);
             this.newHost = Object.assign(this.newHost, options);
-            var q = this.$http.post('/api/devops/nginx', {...this.newHost, name: name || this.newHost.name,
+            return this.$http.post('/api/devops/nginx',
+            {
+              ...this.newHost, name: name || this.newHost.name,
             appName: options.appName,
             server: this.newHost.agent !== 'other' ? this.newHost.agent : this.newHost.agentIp
-
-          } );
-            var that = this;
-            q.then(({data}) => {
+            }).then(({data}) => {
               this.isRequesting = false;
               this.$notify(data.status || "Nginx vhost created", 'success');
               this.newHost = {};
@@ -805,11 +803,9 @@ If you really need to edit this file, this we suggest you rename it to something
               $('newHostModal').modal('hide');
             }).catch((err) => {
               console.log(err);
-              this.isRequesting = false;
               this.displayApiError(err);
-
-            });
-            return q;
+            })
+            .finally(() => { this.isRequesting = false; })
           },
 
           displayApiError(err) {

@@ -202,6 +202,7 @@ module.exports = {
       });
     })
       .catch((err) => {
+        console.warn(err);
         resp.status(400).json({
           errors: [util.inspect(err)],
           message: err.message || 'error_while_creating_host'
