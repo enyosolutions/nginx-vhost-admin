@@ -275,6 +275,16 @@ function initNginxSite(name, options) {
 module.exports = {
   init: initNginxSite,
   async restart() {
+    let restartResult = await shell.exec('sudo nginx -t && service nginx restart');
+    console.log('restartResult', restartResult);
+
+    if (restartResult.code > 0) {
+      return Promise.reject(restartResult.stderr);
+    }
+    return Promise.resolve();
+  },
+
+  async reload() {
     let restartResult = await shell.exec('sudo nginx -t && service nginx reload');
     console.log('restartResult', restartResult);
 
@@ -283,6 +293,7 @@ module.exports = {
     }
     return Promise.resolve();
   },
+
   async addSsl(host, redirect) {
     let restartResult = await shell.exec(`sudo letsencrypt -d ${host} --force-renew  ${redirect ? '--redirect' : ''} && service nginx reload`);
     console.log('SSL error result', restartResult);

@@ -64,6 +64,7 @@ module.exports.routes = {
   'POST /api/devops/nginx': 'NginxReverseController.nginxCreate',
 
   'POST /api/nginx_reverse/restart': 'NginxReverseController.restart',
+  'POST /api/nginx_reverse/reload': 'NginxReverseController.reload',
   'GET /api/nginx_reverse': 'NginxReverseController.list',
   'GET /api/nginx_reverse/:id': 'NginxReverseController.get',
   'PUT /api/nginx_reverse/ssl': 'NginxReverseController.addSsl',

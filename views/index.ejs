@@ -259,6 +259,12 @@ If you really need to edit this file, this we suggest you rename it to something
                 <a
                   href="#"
                   class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"
+                  @click='reloadNginx()'
+                  ><i class="fa fa-sync fa-sm text-white-50"></i> Reload config</a
+                >
+                                <a
+                  href="#"
+                  class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"
                   @click='restartNginx()'
                   ><i class="fa fa-sync fa-sm text-white-50"></i> Restart nginx</a
                 >
@@ -709,6 +715,19 @@ If you really need to edit this file, this we suggest you rename it to something
             this.isRequesting = true;
             this.$http
               .post(`/api/nginx_reverse/restart`)
+              .then(({ data }) => {
+                this.$notify(data.body, 'success');
+              })
+              .catch(err => {
+                this.$notify(JSON.stringify(err.response.data), 'error');
+              })
+              .finally(() => this.isRequesting = false);
+          },
+
+          reloadNginx(host) {
+            this.isRequesting = true;
+            this.$http
+              .post(`/api/nginx_reverse/reload`)
               .then(({ data }) => {
                 this.$notify(data.body, 'success');
               })

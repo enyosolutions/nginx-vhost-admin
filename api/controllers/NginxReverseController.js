@@ -91,7 +91,7 @@ module.exports = {
       if (req.body.content !== originalContent) {
         fs.writeFileSync(path.resolve(sails.config.devops.nginxConfigFolder, id), req.body.content, { encoding: 'utf-8' });
         if (req.query.restart) {
-          const result = await Nginx.restart();
+          const result = await Nginx.reload();
           console.warn('result =>', result);
         }
       }
@@ -118,6 +118,25 @@ module.exports = {
       await Nginx.restart();
       resp.status(200).json({
         body: 'Restart completed',
+      });
+    }
+    catch (err) {
+      return resp.status(500).json(err);
+    }
+  },
+  /**
+ * [restart description]
+ * [description]
+ * @method
+ * @param  {[type]} req  [description]
+ * @param  {[type]} resp [description]
+ * @return {[type]}      [description]
+ */
+  async reload(req, resp) {
+    try {
+      await Nginx.reload();
+      resp.status(200).json({
+        body: 'Reload completed',
       });
     }
     catch (err) {
