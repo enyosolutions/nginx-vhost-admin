@@ -1,10 +1,11 @@
 
 module.exports = {
 
-    environment: process.env.NODE_ENV || 'development',
+    environment: process.env.NODE_ENV || 'production',
     env: '',
     app: 'nginx vhost manager',
     tokenSecret: "",
+    authKey: 'AZEOAZPOKPifAPOEZUIAPZEU123870182947890356129°5710298EAZUDPAZHKQMVVWNFHOI1274288137510°2493182°3901328°',
     datastores: {
     },
     security: {
