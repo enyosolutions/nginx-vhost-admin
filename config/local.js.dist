@@ -26,6 +26,7 @@ module.exports = {
     },
     devops: {
         host: '',
+        nginxConfigFolder: '/etc/nginx/sites-enabled',
         servers: {
           'develop': {
             host: '62.210.75.68',

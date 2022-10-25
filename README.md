@@ -63,11 +63,13 @@ You can add more users and change passwords.
 
 To disable this feature simply set `users: false` instead of the list of users in your local.js.
 
-### Installaton
+### Installation
 
 - Pull the code
 - run `npm install`or `yarn`
 - edit the config in `config/local.js` add all the ips you need to whitelist. This application has a strict whitelisting policy in order to reduce attack surface to hackers.
+- define a Unique AUTH key for your frontend to be able to access the api. **authKey**
+- (Optional) define the servers that you want preconfigured (devops.server section)
 
 ### demo
 
