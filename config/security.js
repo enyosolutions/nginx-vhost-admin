@@ -1,6 +1,7 @@
 
 module.exports.security = {
   disableIpFiltering: false,
+  useRealIp: true,
   whitelistedIps: ['127.0.0.1', '::1'],
   users: {
     admin: 'nginxAdminHost987654321'
