@@ -9,8 +9,8 @@ module.exports = function hasCorrectIp(req, res, next) {
   if (sails.config.security.disableIpFiltering === true || sails.config.security.disableIpFiltering === 1) {
     return next();
   }
-  // console.log('requested ', req.path, 'with ip', req.ip, 'Real ip', req.headers['x-real-ip'], sails.config.security.whitelistedIps);
   const clientIp = sails.config.security.useRealIp ? req.ip : (req.headers['x-real-ip'] || req.headers['x-forwarded-for']);
+  console.log('requested ', req.path, 'with ip', req.ip, 'USED IP', clientIp, sails.config.security.whitelistedIps);
   if (clientIp && sails.config.security && sails.config.security.whitelistedIps && (
 
     sails.config.security.whitelistedIps.includes(clientIp)

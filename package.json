@@ -29,6 +29,7 @@
     "compression": "^1.7.4",
     "cookie": "^0.3.1",
     "cookie-parser": "^1.4.3",
+    "debug": "^4.3.4",
     "ejs": "~0.8.4",
     "eslint": "^4.19.1",
     "express": "^4.16.3",
