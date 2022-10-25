@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- AXEL ADMIN
+
+<head>
+  <!-- AXEL ADMIN
 
 !!!!!
 Do not modify this file as your changes will be lost on the nest restart.
@@ -9,92 +10,68 @@ If you really need to edit this file, this we suggest you rename it to something
 !!!!!
 
 -->
-    <title>Axel Management</title>
-    <!-- needed for adaptive design -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-jsonview/1.2.3/jquery.jsonview.min.css"
-    />
+  <title>Axel Management</title>
+  <!-- needed for adaptive design -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-jsonview/1.2.3/jquery.jsonview.min.css" />
 
-    <!-- Custom fonts for this template-->
-    <link
-      href="/admin/vendor/fontawesome-free/css/all.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet"
-    />
+  <!-- Custom fonts for this template-->
+  <link href="/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
-    <!-- Custom styles for this template-->
-    <link href="/admin/css/sb-admin-2.css" rel="stylesheet" />
+  <!-- Custom styles for this template-->
+  <link href="/admin/css/sb-admin-2.css" rel="stylesheet" />
 
-    <!--
+  <!--
     ReDoc doesn't change outer page styles
     -->
-    <style>
-      :root {
-        --primary: <%= "#FE4D17" %>;
-        --secondary: <%= "#0A1351" %>;
-        --background: <%= "#fefefe" %>;
-        --light: <%= "#fefefe" %>;
-      }
-      body {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
+  <style>
+    :root {
+      --primary: <%="#FE4D17"%>;
+      --secondary: <%="#0A1351"%>;
+      --background: <%="#fefefe"%>;
+      --light: <%="#fefefe"%>;
+    }
 
-  <body id="page-top">
-    <div id="app">
-      <!-- Page Wrapper -->
-      <div id="wrapper">
-        <!-- Sidebar -->
-        <ul
-          class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled"
-          id="accordionSidebar"
-        >
-          <!-- Sidebar - Brand -->
-          <a
-            class="sidebar-brand d-flex align-items-center justify-content-center"
-            href="/"
-          >
-            <div class="sidebar-brand-icon rotate-n-15">
-              <img
-                src="/images/nginx.png"
-                style="width: 49px; background: white; border-radius: 50%"
-                alt=""
-                :class="isRequesting ? 'fa-spin': ''"
-              />
-            </div>
-            <div class="sidebar-brand-text mx-3">
-              <%= sails.config.appName || "Framework manager" %>
-            </div>
-          </a>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
 
-          <!-- Divider -->
-          <hr class="sidebar-divider my-0" />
+<body id="page-top">
+  <div id="app">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+          <div class="sidebar-brand-icon rotate-n-15">
+            <img src="/images/nginx.png" style="width: 49px; background: white; border-radius: 50%" alt="" :class="isRequesting ? 'fa-spin': ''" />
+          </div>
+          <div class="sidebar-brand-text mx-3">
+            <%= sails.config.appName || "Framework manager" %>
+          </div>
+        </a>
 
-          <!-- Nav Item - Dashboard -->
-          <li class="nav-item active">
-            <a class="nav-link" href="/">
-              <i class="fas fa-fw fa-tachometer-alt"></i>
-              <span>Dashboard</span></a
-            >
-          </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0" />
 
-          <!-- Divider -->
-          <hr class="sidebar-divider" />
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+          <a class="nav-link" href="/">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+        </li>
 
-          <!-- Nav Item - Pages Collapse Menu
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+
+        <!-- Nav Item - Pages Collapse Menu
           <li class="nav-item">
             <a
               class="nav-link collapsed"
@@ -122,10 +99,10 @@ If you really need to edit this file, this we suggest you rename it to something
           </li>
 
           -->
-          <!-- Divider -->
-          <hr class="sidebar-divider" />
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
 
-          <!-- Nav Item - Tables
+        <!-- Nav Item - Tables
           <li class="nav-item">
             <a class="nav-link" href="/documentation">
               <i class="fas fa-fw fa-table"></i>
@@ -141,350 +118,260 @@ If you really need to edit this file, this we suggest you rename it to something
           </li>
 
           Divider -->
-          <hr class="sidebar-divider d-none d-md-block" />
+        <hr class="sidebar-divider d-none d-md-block" />
 
-          <!-- Sidebar Toggler (Sidebar) -->
-          <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-          </div>
-        </ul>
-        <!-- End of Sidebar -->
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+      </ul>
+      <!-- End of Sidebar -->
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-          <!-- Main Content -->
-          <div id="content">
-            <!-- Topbar -->
-            <nav
-              class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
-            >
-              <!-- Sidebar Toggle (Topbar) -->
-              <button
-                id="sidebarToggleTop"
-                class="btn btn-link d-md-none rounded-circle mr-3"
-              >
-                <i class="fa fa-bars"></i>
-              </button>
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <!-- Topbar -->
+          <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+              <i class="fa fa-bars"></i>
+            </button>
 
-              <!-- Topbar Search -->
-              <h4 class="text-primary">
-                app:
-                <span class="badge badge-primary"><%= sails.config.app %></span>
-                | Your ip:
-                <span class="badge badge-primary"><%= req.ip %></span> |
-                NODE_ENV:
-                <span class="badge badge-info"><%= process.env.NODE_ENV %></span>
-              </h4>
-              <form
-                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-              >
-                <div class="input-group d-none">
-                  <input
-                    type="text"
-                    class="form-control bg-light border-0 small"
-                    placeholder="Search for..."
-                    aria-label="Search"
-                    aria-describedby="basic-addon2"
-                  />
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                      <i class="fas fa-search fa-sm"></i>
-                    </button>
-                  </div>
-                </div>
-              </form>
-
-              <!-- Topbar Navbar -->
-              <ul class="navbar-nav ml-auto">
-                <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                <li class="nav-item dropdown no-arrow d-sm-none">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="searchDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i class="fas fa-search fa-fw"></i>
-                  </a>
-                  <!-- Dropdown - Messages -->
-                  <div
-                    class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                    aria-labelledby="searchDropdown"
-                  >
-                    <form class="form-inline mr-auto w-100 navbar-search">
-                      <div class="input-group">
-                        <input
-                          type="text"
-                          class="form-control bg-light border-0 small"
-                          placeholder="Filter..."
-                          aria-label="Search"
-                          aria-describedby="basic-addon2"
-                        />
-                        <div class="input-group-append">
-                          <button class="btn btn-primary" type="button">
-                            <i class="fas fa-search fa-sm"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </li>
-
-                <!-- Nav Item - Alerts -->
-                <li class="nav-item no-arrow mx-1"></li>
-
-                <div class="topbar-divider d-none d-sm-block"></div>
-              </ul>
-            </nav>
-            <!-- End of Topbar -->
-
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
-              <!-- Page Heading -->
-              <div
-                class="d-sm-flex align-items-center justify-content-between mb-4"
-              >
-                <h1 class="h3 mb-0 text-gray-800">Dashboard <i class="fa fa-spinner fa-spin" v-if="isRequesting"></i></h1>
-                <div>
-                <a
-                  href="#"
-                  class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"
-                  data-toggle="modal"
-                  data-target="#newHostModal"
-                  ><i class="fas fa-plus fa-sm text-white-50"></i> New Host</a
-                >
-                <a
-                  href="#"
-                  class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"
-                  @click='reloadNginx()'
-                  ><i class="fa fa-sync fa-sm text-white-50"></i> Reload config</a
-                >
-                                <a
-                  href="#"
-                  class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"
-                  @click='restartNginx()'
-                  ><i class="fa fa-sync fa-sm text-white-50"></i> Restart nginx</a
-                >
+            <!-- Topbar Search -->
+            <h4 class="text-primary">
+              app:
+              <span class="badge badge-primary"><%= sails.config.app %></span>
+              | Your ip:
+              <span class="badge badge-primary"><%= sails.config.security.useRealIp ? req.ip : (req.headers['x-real-ip'] || req.headers['x-forwarded-for']) %></span> |
+              NODE_ENV:
+              <span class="badge badge-info"><%= process.env.NODE_ENV %></span>
+            </h4>
+            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+              <div class="input-group d-none">
+                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="button">
+                    <i class="fas fa-search fa-sm"></i>
+                  </button>
                 </div>
               </div>
-              <pre></pre>
-              <!-- Content Row -->
-              <div class="row">
-                <div class="col-12 col-xs-12">
-                  <div class="card shadow mb-4">
-                    <div
-                      class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                    >
-                      <h6 class="m-0 font-weight-bold text-primary">
-                        Nginx Hosts
-                        <span class="badge badge-primary">{{
-                          hosts.length
-                        }}</span>
-                      </h6>
+            </form>
 
-
-                      <div class="btn-group float-right">
-                                        <div class="input-group ">
-                        <input
-                        v-model="searchInput"
-                          type="text"
-                          class="form-control bg-white border-0 small"
-                          placeholder="Filter..."
-                          aria-label="Search"
-                          aria-describedby="basic-addon2"
-                        />
-                        <div class="input-group-append">
-                          <button class="btn btn-primary" type="button">
-                            <i class="fas fa-search fa-sm"></i>
-                          </button>
-                        </div>
-                      </div>
-                        <button class="btn btn-link mr-2" @click="listHosts()">
-                          <i class="fa fa-sync"></i>
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+              <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+              <li class="nav-item dropdown no-arrow d-sm-none">
+                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-search fa-fw"></i>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                  <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                      <input type="text" class="form-control bg-light border-0 small" placeholder="Filter..." aria-label="Search" aria-describedby="basic-addon2" />
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                          <i class="fas fa-search fa-sm"></i>
                         </button>
                       </div>
                     </div>
-                    <div class="card-body p-2">
-                      <table
-                        class="table table-bordered"
-                        id="dataTable"
-                        cellspacing="0"
-                      >
-                        <thead>
-                          <tr>
-                            <td>File name</td>
-                            <td>Host</td>
-                            <td>Destination</td>
-                            <td>Ssl</td>
-                            <td>Actions</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr v-for="host in filteredHosts"
-                          >
-                            <td>
-                              {{ host.id }}
-                            </td>
-                            <td>
-                              <a v-if="host.server" target="_blank" :href="(host.ssl ? 'https://' : 'http://') + host.server.server_name">{{ host.server.server_name }}</a>
-                            </td>
-                            <td>
-                              {{
+                  </form>
+                </div>
+              </li>
+
+              <!-- Nav Item - Alerts -->
+              <li class="nav-item no-arrow mx-1"></li>
+
+              <div class="topbar-divider d-none d-sm-block"></div>
+            </ul>
+          </nav>
+          <!-- End of Topbar -->
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+              <h1 class="h3 mb-0 text-gray-800">Dashboard <i class="fa fa-spinner fa-spin" v-if="isRequesting"></i></h1>
+              <div>
+                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm" data-toggle="modal" data-target="#newHostModal"><i class="fas fa-plus fa-sm text-white-50"></i> New Host</a>
+                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" @click='reloadNginx()'><i class="fa fa-sync fa-sm text-white-50"></i> Reload config</a>
+                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" @click='restartNginx()'><i class="fa fa-sync fa-sm text-white-50"></i> Restart nginx</a>
+              </div>
+            </div>
+            <pre></pre>
+            <!-- Content Row -->
+            <div class="row">
+              <div class="col-12 col-xs-12">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                      Nginx Hosts
+                      <span class="badge badge-primary">
+                        {{
+                          hosts.length
+                        }}</span>
+                    </h6>
+
+
+                    <div class="btn-group float-right">
+                      <div class="input-group ">
+                        <input v-model="searchInput" type="text" class="form-control bg-white border-0 small" placeholder="Filter..." aria-label="Search" aria-describedby="basic-addon2" />
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <button class="btn btn-link mr-2" @click="listHosts()">
+                        <i class="fa fa-sync"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body p-2">
+                    <table class="table table-bordered" id="dataTable" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <td>File name</td>
+                          <td>Host</td>
+                          <td>Destination</td>
+                          <td>Ssl</td>
+                          <td>Actions</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="host in filteredHosts">
+                          <td>
+                            {{ host.id }}
+                          </td>
+                          <td>
+                            <a v-if="host.server" target="_blank" :href="(host.ssl ? 'https://' : 'http://') + host.server.server_name">
+                              {{ host.server.server_name }}</a>
+                          </td>
+                          <td>
+                            {{
                                 host.server &&
                                 host.server["location /"] &&
                                 host.server["location /"].proxy_pass
                                   ? host.server["location /"].proxy_pass
                                   : host.server && host.server.root
                               }}
-                            </td>
-                            <td>
-                              <span
-                                v-if="host.ssl === true"
-                                class="badge badge-success"
-                                >Yes</span
-                              >
-                              <span
-                                v-if="host.ssl === false"
-                                class="badge badge-danger"
-                                >No</span
-                              >
-                              <span
-                                v-if="host.ssl === undefined"
-                                class="badge badge-info"
-                                >?</span
-                              >
-                            </td>
-                            <td>
-                              <div class="float-right">
-                                <button
-                                  class="btn btn-info badge"
-                                  @click="editHost(host.id)"
-                                  data-toggle="modal"
-                                  data-target="#editHostModal"
-                                >
-                                  <i class="fa fa-edit"></i> Edit
-                                </button>
-                                 <button class="btn btn-success badge" @click="generateSslHost(host.server.server_name)">
-                                  <i class="fa fa-lock"></i> Generate SSL certificate
-                                </button>
-                                <button class="btn btn-danger badge" @click="deleteHost(host.id)">
-                                  <i class="fa fa-trash"></i> Delete
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                          </td>
+                          <td>
+                            <span v-if="host.ssl === true" class="badge badge-success">Yes</span>
+                            <span v-if="host.ssl === false" class="badge badge-danger">No</span>
+                            <span v-if="host.ssl === undefined" class="badge badge-info">?</span>
+                          </td>
+                          <td>
+                            <div class="float-right">
+                              <button class="btn btn-info badge" @click="editHost(host.id)" data-toggle="modal" data-target="#editHostModal">
+                                <i class="fa fa-edit"></i> Edit
+                              </button>
+                              <button class="btn btn-success badge" @click="generateSslHost(host.server.server_name)">
+                                <i class="fa fa-lock"></i> Generate SSL certificate
+                              </button>
+                              <button class="btn btn-danger badge" @click="deleteHost(host.id)">
+                                <i class="fa fa-trash"></i> Delete
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
-
-
             </div>
-            <!-- /.container-fluid -->
+
+
           </div>
-          <!-- End of Main Content -->
-
-          <!-- Footer -->
-          <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-              <div class="copyright text-center my-auto">
-                <span>Copyright &copy; <a href="https://github.com/enyosolutions-team/nginx-vhost-admin" target="_blank">Nginx Vhost admin</a> 2021 by <a href="https://www.enyosolutions.com" target="_blank">Enyosolutions</a></span> with theme SB ADMIN 2
-              </div>
-            </div>
-          </footer>
-          <!-- End of Footer -->
+          <!-- /.container-fluid -->
         </div>
-        <!-- End of Content Wrapper -->
-      </div>
-      <!-- End of Page Wrapper -->
+        <!-- End of Main Content -->
 
-      <!-- Scroll to Top Button-->
-      <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-      </a>
-
-      <div
-        class="modal fade"
-        id="newHostModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content" v-if="currentHost">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                create host
-              </h5>
-              <button
-                class="close"
-                type="button"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">×</span>
-              </button>
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; <a href="https://github.com/enyosolutions-team/nginx-vhost-admin" target="_blank">Nginx Vhost admin</a> 2021 by <a href="https://www.enyosolutions.com" target="_blank">Enyosolutions</a></span> with theme SB ADMIN 2
             </div>
-            <div class="modal-body">
-                  <!-- NGINX -->
+          </div>
+        </footer>
+        <!-- End of Footer -->
+      </div>
+      <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <div class="modal fade" id="newHostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" v-if="currentHost">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              create host
+            </h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- NGINX -->
             <div id="nginx" class="">
-                <h3>Nginx instance </h3>
+              <h3>Nginx instance </h3>
 
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Name <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" v-model="newHost.name" aria-describedby="" placeholder="Enter app name">
-                  <small id="emailHelp" class="form-text text-muted">my-app.dev | my-app.staging </small>
-                </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" v-model="newHost.name" aria-describedby="" placeholder="Enter app name">
+                <small id="emailHelp" class="form-text text-muted">my-app.dev | my-app.staging </small>
+              </div>
 
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">Vhost type <span class="text-danger">*</span></label>
-                  <select class="form-control" id="exampleFormControlSelect1" v-model="newHost.type">
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">Vhost type <span class="text-danger">*</span></label>
+                <select class="form-control" id="exampleFormControlSelect1" v-model="newHost.type">
                   <option></option>
-                    <option value="proxy">php</option>
-                    <option value="html">static serve (html)</option>
-                    <option value="proxy">proxy</option>
-                  </select>
-                </div>
+                  <option value="proxy">php</option>
+                  <option value="html">static serve (html)</option>
+                  <option value="proxy">proxy</option>
+                </select>
+              </div>
 
-                <div class="form-group"
-                v-if=" newHost.type !== 'html' "
-                >
-                  <label for="exampleFormControlSelect1">Target server <span class="text-danger">*</span></label>
-                  <select class="form-control" id="exampleFormControlSelect1" v-model="newHost.agent">
-                    <option v-for="(server, key) in servers" :value="server.host">{{ key }} - {{ server.host }}</option>
-                    <option value="other">Autres</option>
-                  </select>
-                  <template v-if="newHost.agent === 'other'" >
+              <div class="form-group" v-if=" newHost.type !== 'html' ">
+                <label for="exampleFormControlSelect1">Target server <span class="text-danger">*</span></label>
+                <select class="form-control" id="exampleFormControlSelect1" v-model="newHost.agent">
+                  <option v-for="(server, key) in servers" :value="server.host">
+                    {{ key }} -
+                    {{ server.host }}
+                  </option>
+                  <option value="other">Autres</option>
+                </select>
+                <template v-if="newHost.agent === 'other'">
                   <label for="exampleFormControlSelect1">Target server ip <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control"  required v-model="newHost.agentIp" aria-describedby="" placeholder="Enter ip address">
-                  </template>
-                </div>
+                  <input type="text" class="form-control" required v-model="newHost.agentIp" aria-describedby="" placeholder="Enter ip address">
+                </template>
+              </div>
 
-                <div class="form-group"
-                v-if=" newHost.type !== 'html' "
-                >
-                  <label for="">Port</label>
-                  <input type="text" class="form-control"  aria-describedby="emailHelp" placeholder="" v-model="newHost.port">
-                </div>
+              <div class="form-group" v-if=" newHost.type !== 'html' ">
+                <label for="">Port</label>
+                <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="" v-model="newHost.port">
+              </div>
 
 
-                <div class="form-group" v-if="newHost.type === 'node'">
-                  <label for="exampleInputEmail1">Startup script for node </label>
-                  <input type="text" class="form-control" id="git" aria-describedby="emailHelp" placeholder="Enter git url" v-model="newHost.startupScript">
-                </div>
+              <div class="form-group" v-if="newHost.type === 'node'">
+                <label for="exampleInputEmail1">Startup script for node </label>
+                <input type="text" class="form-control" id="git" aria-describedby="emailHelp" placeholder="Enter git url" v-model="newHost.startupScript">
+              </div>
 
-                <div class="form-group" v-if="newHost.type === 'html' || newHost.type === 'php'">
-                  <label for="exampleInputEmail1">App document root </label>
-                  <input type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Defaults to '{projects Folder}/{appName}/dist'" v-model="newHost.appRootFolder">
-                </div>
+              <div class="form-group" v-if="newHost.type === 'html' || newHost.type === 'php'">
+                <label for="exampleInputEmail1">App document root </label>
+                <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Defaults to '{projects Folder}/{appName}/dist'" v-model="newHost.appRootFolder">
+              </div>
 
-                <template v-if="newHost && newHost.host === 'localhost'">
+              <template v-if="newHost && newHost.host === 'localhost'">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Repository</label>
                   <input type="url" class="form-control" id="git" aria-describedby="emailHelp" placeholder="Enter git url" v-model="newHost.git">
@@ -498,323 +385,302 @@ If you really need to edit this file, this we suggest you rename it to something
               </template>
               </form>
             </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                class="btn btn-secondary"
-                type="button"
-                data-dismiss="modal"
-              >
-                Cancel
-              </button>
-              <button class="btn btn-success" v-on:click="createNginxInstance()"
-              :disabled="isRequesting"
-              >
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">
+              Cancel
+            </button>
+            <button class="btn btn-success" v-on:click="createNginxInstance()" :disabled="isRequesting">
               <i class="fa fa-spinner fa-spin" v-if="isRequesting"></i>
-                Create
-              </button>
-            </div>
+              Create
+            </button>
           </div>
         </div>
       </div>
-
-      <div
-        class="modal fade"
-        id="editHostModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content" v-if="currentHost">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                Edit {{ currentHost.id }}
-              </h5>
-              <button
-                class="close"
-                type="button"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label>Host</label>
-                <input
-                  v-model="currentHost.id"
-                  type="text"
-                  class="form-control"
-                  placeholder="Host name"
-                  :disabled="true"
-                />
-              </div>
-              <div class="form-group" v-if="currentHost.server">
-                <label>Host name</label>
-                <input
-                  v-model="currentHost.server.server_name"
-                  type="text"
-                  class="form-control"
-                  placeholder="Host name"
-                  :disabled="true"
-                />
-              </div>
-              <div class="form-group">
-                <label>Host</label>
-                <input
-                  v-model="currentHost.id"
-                  type="text"
-                  class="form-control"
-                  placeholder="Host name"
-                  :disabled="true"
-                />
-              </div>
-              <div class="form-group">
-                <label> Raw edit</label>
-                <textarea
-                  v-model="currentHost.content"
-                  class="form-control"
-                  placeholder="raw"
-                  style="min-height: 50vh; background: #444; color: #fff"
-                ></textarea>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                class="btn btn-secondary"
-                type="button"
-                data-dismiss="modal"
-              >
-                Cancel
-              </button>
-              <button class="btn btn-success" @click="saveHost(currentHost)">
-                Save
-              </button>
-              <button class="btn btn-success" @click="saveHostAndClose(currentHost)">
-                Save and close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
     </div>
 
-    <ul id="events"></ul>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <div class="modal fade" id="editHostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" v-if="currentHost">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Edit
+              {{ currentHost.id }}
+            </h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Host</label>
+              <input v-model="currentHost.id" type="text" class="form-control" placeholder="Host name" :disabled="true" />
+            </div>
+            <div class="form-group" v-if="currentHost.server">
+              <label>Host name</label>
+              <input v-model="currentHost.server.server_name" type="text" class="form-control" placeholder="Host name" :disabled="true" />
+            </div>
+            <div class="form-group">
+              <label>Host</label>
+              <input v-model="currentHost.id" type="text" class="form-control" placeholder="Host name" :disabled="true" />
+            </div>
+            <div class="form-group">
+              <label> Raw edit</label>
+              <textarea v-model="currentHost.content" class="form-control" placeholder="raw" style="min-height: 50vh; background: #444; color: #fff"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">
+              Cancel
+            </button>
+            <button class="btn btn-success" @click="saveHost(currentHost)">
+              Save
+            </button>
+            <button class="btn btn-success" @click="saveHostAndClose(currentHost)">
+              Save and close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="/admin/vendor/jquery/jquery.min.js"></script>
-    <script src="/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jsonview/1.2.3/jquery.jsonview.js"></script>
-    <script src="/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="/admin/js/sb-admin-2.min.js"></script>
+  </div>
 
-    <!-- Page level plugins -->
-    <script src="/admin/vendor/chart.js/Chart.min.js"></script>
+  <ul id="events"></ul>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="/admin/js/vue/vue.js"></script>
-    <script src="/admin/js/axios.min.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="/admin/vendor/jquery/jquery.min.js"></script>
+  <script src="/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-            window.App  = window.App  || {};
-            const Swal2 = Swal.mixin({
-                      customClass: {
-                        confirmButton: 'btn btn-primary ml-1',
-                        cancelButton: 'btn btn-danger btn-light'
-                      },
-                      buttonsStyling: false,
-                      reverseButtons: true
+  <!-- Core plugin JavaScript-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jsonview/1.2.3/jquery.jsonview.js"></script>
+  <script src="/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/admin/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/admin/vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/admin/js/vue/vue.js"></script>
+  <script src="/admin/js/axios.min.js"></script>
+
+  <script>
+    window.App = window.App || {};
+    const Swal2 = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-primary ml-1',
+        cancelButton: 'btn btn-danger btn-light'
+      },
+      buttonsStyling: false,
+      reverseButtons: true
+    });
+    $(function() {
+      $('#jstree').JSONView({
+        config: <%- JSON.stringify(sails.config) %>,
+      }, {
+        collapsed: true
       });
-          $(function () {
-                $('#jstree').JSONView(
-                  {
-                    config: <%- JSON.stringify(sails.config) %>,
-                  }
-              , {collapsed: true});
-            });
-    </script>
-    <script>
-      Vue.prototype.$http = axios.create({
-        baseURL: "/",
-        timeout: 200000,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "x-enyo-token": "Bearer <%= sails.config.authKey %>",
-        },
-      });
-      App.vue = new Vue({
-        el: "#app",
-        data: {
-          hosts: [],
-          routes: null,
-          blockingModal: null,
-          newApi: {},
-          currentHost: {},
-          newHost: {},
-          isEditingHost: false,
-          isRequesting: false,
-          servers: <%- JSON.stringify({...sails.config.devops.servers, localhost: {host: 'localhost'}}, null, 2) %>,
-          searchInput: '',
-        },
-        mounted() {
-          this.listHosts();
-        },
-        computed: {
-          filteredHosts() {
-            if (!this.searchInput) {
-              return this.hosts;
-            }
-            return this.hosts.filter(host => JSON.stringify(host).toLocaleLowerCase().includes(this.searchInput.toLowerCase()));
+    });
+  </script>
+  <script>
+    Vue.prototype.$http = axios.create({
+      baseURL: "/",
+      timeout: 200000,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-enyo-token": "Bearer <%= sails.config.authKey %>",
+      },
+    });
+    App.vue = new Vue({
+      el: "#app",
+      data: {
+        hosts: [],
+        routes: null,
+        blockingModal: null,
+        newApi: {},
+        currentHost: {},
+        newHost: {},
+        isEditingHost: false,
+        isRequesting: false,
+        servers: <%- JSON.stringify({...sails.config.devops.servers, localhost: {host: 'localhost'}}, null, 2) %>,
+        searchInput: '',
+      },
+      mounted() {
+        this.listHosts();
+      },
+      computed: {
+        filteredHosts() {
+          if (!this.searchInput) {
+            return this.hosts;
           }
+          return this.hosts.filter(host => JSON.stringify(host).toLocaleLowerCase().includes(this.searchInput.toLowerCase()));
+        }
+      },
+      watch: {},
+      methods: {
+        $notify(text, type) {
+          return Swal2.fire({
+            title: text,
+            icon: type || "info",
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 10000,
+          });
         },
-        watch: {},
-        methods: {
-          $notify(text, type) {
-            return Swal2.fire({
-              title: text,
-              icon: type || "info",
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 10000,
-            });
-          },
 
-          listHosts() {
-            this.isRequesting = true;
-            this.$http.get("/api/nginx_reverse").then(({ data }) => {
-              console.log({ data });
+        listHosts() {
+          this.isRequesting = true;
+          this.$http.get("/api/nginx_reverse").then(({
+              data
+            }) => {
+              console.log({
+                data
+              });
               this.hosts = data.body;
               this.isRequesting = false;
             })
             .catch(this.displayApiError);
-          },
+        },
 
-          editHost(host) {
-            this.$http
-              .get(`/api/nginx_reverse/${host.replace(/\./g, "$")}`)
-              .then(({ data }) => {
-                this.currentHost = data.body;
-              })
-              .catch(this.displayApiError);
-          },
-
-          restartNginx(host) {
-            this.isRequesting = true;
-            this.$http
-              .post(`/api/nginx_reverse/restart`)
-              .then(({ data }) => {
-                this.$notify(data.body, 'success');
-              })
-              .catch(err => {
-                this.$notify(JSON.stringify(err.response.data), 'error');
-              })
-              .finally(() => this.isRequesting = false);
-          },
-
-          reloadNginx(host) {
-            this.isRequesting = true;
-            this.$http
-              .post(`/api/nginx_reverse/reload`)
-              .then(({ data }) => {
-                this.$notify(data.body, 'success');
-              })
-              .catch(err => {
-                this.$notify(JSON.stringify(err.response.data), 'error');
-              })
-              .finally(() => this.isRequesting = false);
-          },
-
-          saveHost(currentHost) {
-            if (!currentHost) {
-              return;
-            }
-            this.isRequesting = true;
-            return this.$http
-              .put(`/api/nginx_reverse/${currentHost.id}?restart=true`, {
-                content: currentHost.content,
-              })
-              .then(({ data }) => {
-                this.$notify("Config saved", "success");
-              })
-              .catch((err) => {
-                this.$notify("Error:" + (err.response && err.response.data || err.status), "error");
-                throw err;
-              })
-              .finally(() => this.isRequesting = false);
-          },
-
-          async saveHostAndClose(currentHost) {
-            await this.saveHost(currentHost);
-            $('#editHostModal').modal('hide');
-          },
-
-          deleteHost(id) {
-            Swal2.fire({title: "Etes vous sur ?",
-             showConfirmButton: true,
-             showCancelButton: true,
-
-          }).then(confirm => {
-              if (confirm && confirm.isConfirmed) {
-                 this.$http
-              .delete(`/api/nginx_reverse/${id}`)
-              .then(({ data }) => {
-                this.$notify("Config deleted", "success");
-                this.listHosts();
-              })
-              .catch(this.displayApiError);
-              }
+        editHost(host) {
+          this.$http
+            .get(`/api/nginx_reverse/${host.replace(/\./g, "$")}`)
+            .then(({
+              data
+            }) => {
+              this.currentHost = data.body;
             })
-          },
+            .catch(this.displayApiError);
+        },
 
-          generateSslHost(host) {
-              Swal2.fire({title: "Etes vous sur ?",
-             showConfirmButton: true,
-             showCancelButton: true,
+        restartNginx(host) {
+          this.isRequesting = true;
+          this.$http
+            .post(`/api/nginx_reverse/restart`)
+            .then(({
+              data
+            }) => {
+              this.$notify(data.body, 'success');
+            })
+            .catch(err => {
+              this.$notify(JSON.stringify(err.response.data), 'error');
+            })
+            .finally(() => this.isRequesting = false);
+        },
+
+        reloadNginx(host) {
+          this.isRequesting = true;
+          this.$http
+            .post(`/api/nginx_reverse/reload`)
+            .then(({
+              data
+            }) => {
+              this.$notify(data.body, 'success');
+            })
+            .catch(err => {
+              this.$notify(JSON.stringify(err.response.data), 'error');
+            })
+            .finally(() => this.isRequesting = false);
+        },
+
+        saveHost(currentHost) {
+          if (!currentHost) {
+            return;
+          }
+          this.isRequesting = true;
+          return this.$http
+            .put(`/api/nginx_reverse/${currentHost.id}?restart=true`, {
+              content: currentHost.content,
+            })
+            .then(({
+              data
+            }) => {
+              this.$notify("Config saved", "success");
+            })
+            .catch((err) => {
+              this.$notify("Error:" + (err.response && err.response.data || err.status), "error");
+              throw err;
+            })
+            .finally(() => this.isRequesting = false);
+        },
+
+        async saveHostAndClose(currentHost) {
+          await this.saveHost(currentHost);
+          $('#editHostModal').modal('hide');
+        },
+
+        deleteHost(id) {
+          Swal2.fire({
+            title: "Etes vous sur ?",
+            showConfirmButton: true,
+            showCancelButton: true,
 
           }).then(confirm => {
+            if (confirm && confirm.isConfirmed) {
+              this.$http
+                .delete(`/api/nginx_reverse/${id}`)
+                .then(({
+                  data
+                }) => {
+                  this.$notify("Config deleted", "success");
+                  this.listHosts();
+                })
+                .catch(this.displayApiError);
+            }
+          })
+        },
+
+        generateSslHost(host) {
+          Swal2.fire({
+              title: "Etes vous sur ?",
+              showConfirmButton: true,
+              showCancelButton: true,
+
+            }).then(confirm => {
               if (confirm && confirm.isConfirmed) {
                 this.isRequesting = true;
                 this.$notify("Generating ssl certificate, this might take a while", 'info');
                 return this.$http
-                  .put(`/api/nginx_reverse/ssl`, {host, redirect: true})
-                  .then(({ data }) => {
+                  .put(`/api/nginx_reverse/ssl`, {
+                    host,
+                    redirect: true
+                  })
+                  .then(({
+                    data
+                  }) => {
                     this.$notify("SSl successfully installed", "success");
                     this.listHosts();
                   });
               }
             })
             .catch(this.displayApiError)
-              .finally(() => this.isRequesting = false);
-          },
+            .finally(() => this.isRequesting = false);
+        },
 
-          resetApiForm() {
-            this.newApi = Object.assign({}, this.newApiTemplate);
-            this.newApi.fields = [];
-          },
+        resetApiForm() {
+          this.newApi = Object.assign({}, this.newApiTemplate);
+          this.newApi.fields = [];
+        },
 
-          createNginxInstance(name, options = {}) {
-            this.isRequesting = true;
-            this.$notify(`Creating NGINX vhost ${this.newHost.name} ...`);
-            this.newHost = Object.assign(this.newHost, options);
-            return this.$http.post('/api/devops/nginx',
-            {
-              ...this.newHost, name: name || this.newHost.name,
-            appName: options.appName,
-            server: this.newHost.agent !== 'other' ? this.newHost.agent : this.newHost.agentIp
-            }).then(({data}) => {
+        createNginxInstance(name, options = {}) {
+          this.isRequesting = true;
+          this.$notify(`Creating NGINX vhost ${this.newHost.name} ...`);
+          this.newHost = Object.assign(this.newHost, options);
+          return this.$http.post('/api/devops/nginx', {
+              ...this.newHost,
+              name: name || this.newHost.name,
+              appName: options.appName,
+              server: this.newHost.agent !== 'other' ? this.newHost.agent : this.newHost.agentIp
+            }).then(({
+              data
+            }) => {
               this.isRequesting = false;
               this.$notify(data.status || "Nginx vhost created", 'success');
               this.newHost = {};
@@ -824,16 +690,18 @@ If you really need to edit this file, this we suggest you rename it to something
               console.log(err);
               this.displayApiError(err);
             })
-            .finally(() => { this.isRequesting = false; })
-          },
-
-          displayApiError(err) {
-            this.isRequesting = true;
-            this.$notify(err.response && err.response.data ? (err.response.data.message || JSON.stringify(err.response.data)) :(err.response ? err.response : err), 'error' );
-          }
+            .finally(() => {
+              this.isRequesting = false;
+            })
         },
-      });
 
-    </script>
-  </body>
+        displayApiError(err) {
+          this.isRequesting = true;
+          this.$notify(err.response && err.response.data ? (err.response.data.message || JSON.stringify(err.response.data)) : (err.response ? err.response : err), 'error');
+        }
+      },
+    });
+  </script>
+</body>
+
 </html>
