@@ -13,7 +13,7 @@ module.exports = function hasCorrectIp(req, res, next) {
   if (req.ip && sails.config.security && sails.config.security.whitelistedIps && (
 
     sails.config.security.whitelistedIps.includes(req.headers['x-real-ip'])
-    || sails.config.security.whitelistedIps.includes(req.ip)
+    || sails.config.security.whitelistedIps.includes(req.headers['x-forwarded-for'])
 
   )) {
     return next();
