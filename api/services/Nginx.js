@@ -111,7 +111,7 @@ function initNginxSite(name, options) {
     const appName = options.appName || undefined;
     // const hostName = config.nginxHost || '';
 
-    const host = name.indexOf('.com') > 1 ? name : (name + '.enyosolutions.com');
+    const host = name;
     const targetServer = options.server || sails.config.agentName || 'localhost';
 
     let port;

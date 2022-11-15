@@ -49,6 +49,7 @@
     "sails-generate-views": "^0.10.8",
     "sails-hook-sockets": "^2.0.0",
     "shelljs": "^0.8.2",
+    "tail": "^2.2.4",
     "tracer": "^0.9.1"
   },
   "devDependencies": {
