@@ -1,3 +1,5 @@
+const securityConfig = require('./security');
+
 module.exports = `
 
 # ------------------------------------------------------------
@@ -32,5 +34,8 @@ server {
         fastcgi_read_timeout 1200;
         include fastcgi_params;
     }
+
+    # security
+    ${securityConfig}
 }
 `;

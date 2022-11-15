@@ -1,3 +1,5 @@
+const securityConfig = require('./security');
+
 module.exports = `
 
 # ------------------------------------------------------------
@@ -17,6 +19,9 @@ server {
     location / {
         try_files $uri $uri/ /index.html;
     }
+
+    # security
+    ${securityConfig}
 }
 
 `;

@@ -1,3 +1,5 @@
+const securityConfig = require('./security');
+
 module.exports = `
 # ------------------------------------------------------------
 # {{ host }}
@@ -27,5 +29,8 @@ server {
         proxy_http_version 1.1;
 
     }
+
+    # security
+    ${securityConfig}
 }
 `;
