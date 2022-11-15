@@ -33,7 +33,7 @@ module.exports.routes = {
    ************************************************************************** */
   '/': {
     view: 'index',
-    policy: 'hasAccount'
+    policy: 'hasCorrectIp',
   },
 
 

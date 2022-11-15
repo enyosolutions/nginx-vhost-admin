@@ -30,7 +30,7 @@ module.exports.policies = {
 
   // '*': true,
   // eslint-disable-next-line global-require
-  '*': ['isAuthorized', require('compression')(), 'hasCorrectIp', 'hasAccount'],
+  '*': ['isAuthorized', require('compression')(), 'hasCorrectIp'],
   NginxController: {
     '*': ['isAuthorized']
   },

@@ -12,9 +12,12 @@ module.exports = {
       disableIpFiltering: false,
       useRealIp: true,
       whitelistedIps: ['127.0.0.1', '::1'],
+      users: false
+      /* OR
       users: {
-        admin: 'nginxAdminHost987654321'
+        admin: 'PUT YOUR PASSWORD HERE'
       },
+      */
     },
     mail: {
         protocol: 'SMTP',
