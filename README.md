@@ -11,11 +11,11 @@ If you need more templates please open an issue or better yet create `pull reque
 
 ## why
 
-Even if there are other options out there, most of them require some complicated install, a database or a docker. I wanted something that could integrate into and existing install, or deploy on other server without too much work.
+Even if there are other options out there, most of them require some complicated install, a database or a docker. I wanted something that could integrate into and existing install, or deploy on a new server without too much work.
 
 - no database : data is read directly from nginx config.
-- no need modifying you config files
-- no docker, so no need encapsulating you docker into a container.
+- no need modifying your config files
+- no docker, so no need encapsulating your docker into a container.
 
 ## Installation
 
