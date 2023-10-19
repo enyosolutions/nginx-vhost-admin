@@ -23,8 +23,8 @@ module.exports = {
       files = files.map(id => {
         try {
           const parsedConfig = NginxConfigParser.readConfigFile(path.resolve(sails.config.devops.nginxConfigFolder, id), { parseIncludes: false });
-          if (parsedConfig.server && parsedConfig.server.length > 1 && parsedConfig.server[1].listen === '80' && parsedConfig.server[1].return === '404') {
-            parsedConfig.server = parsedConfig.server[0];
+          if (parsedConfig.server && parsedConfig.server.length > 0 && parsedConfig.server.some(server => server.listen && server.listen.includes('ssl'))) {
+            parsedConfig.server = parsedConfig.server.find(server => server.listen.includes('ssl'));
             parsedConfig.ssl = true;
           }
           return {
@@ -54,8 +54,8 @@ module.exports = {
       try {
         parsedConfig = NginxConfigParser.readConfigFile(path.resolve(sails.config.devops.nginxConfigFolder, id), { parseIncludes: false });
         //let ssl = undefined;
-        if (parsedConfig.server && parsedConfig.server.length > 1 && parsedConfig.server[1].listen === '80' && parsedConfig.server[1].return === '404') {
-          parsedConfig.server = parsedConfig.server[0];
+        if (parsedConfig.server && parsedConfig.server.length > 0 && parsedConfig.server.some(server => server.listen && server.listen.includes('ssl'))) {
+          parsedConfig.server = parsedConfig.server.find(server => server.listen.includes('ssl'));
           parsedConfig.ssl = true;
         }
       }
