@@ -245,16 +245,12 @@ If you really need to edit this file, this we suggest you rename it to something
                             {{ host.id }}
                           </td>
                           <td>
-                            <a v-if="host.server" target="_blank" :href="(host.ssl ? 'https://' : 'http://') + host.server.server_name">
-                              {{ host.server.server_name }}</a>
+                            <a v-if="host" target="_blank" :href="(host.ssl ? 'https://' : 'http://') + getHostUrl(host)">
+                              {{ getHostUrl(host) }}</a>
                           </td>
                           <td>
                             {{
-                                host.server &&
-                                host.server["location /"] &&
-                                host.server["location /"].proxy_pass
-                                  ? host.server["location /"].proxy_pass
-                                  : host.server && host.server.root
+                              getHostDestination(host)
                               }}
                           </td>
                           <td>
@@ -267,7 +263,7 @@ If you really need to edit this file, this we suggest you rename it to something
                               <button class="btn btn-info badge" @click="editHost(host.id)" data-toggle="modal" data-target="#editHostModal">
                                 <i class="fa fa-edit"></i> Edit
                               </button>
-                              <button class="btn btn-success badge" @click="generateSslHost(host.server.server_name)">
+                              <button class="btn btn-success badge" @click="generateSslHost(host)">
                                 <i class="fa fa-lock"></i> Generate SSL certificate
                               </button>
                               <button class="btn btn-danger badge" @click="deleteHost(host.id)">
@@ -293,7 +289,7 @@ If you really need to edit this file, this we suggest you rename it to something
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; <a href="https://github.com/enyosolutions-team/nginx-vhost-admin" target="_blank">Nginx Vhost admin</a> 2021 by <a href="https://www.enyosolutions.com" target="_blank">Enyosolutions</a></span> with theme SB ADMIN 2
+              <span>Copyright &copy; <a href="https://github.com/enyosolutions-team/nginx-vhost-admin" target="_blank">Nginx Vhost admin</a> 2023 by <a href="https://www.enyosolutions.com" target="_blank">Enyosolutions</a></span> with theme SB ADMIN 2
             </div>
           </div>
         </footer>
@@ -418,7 +414,7 @@ If you really need to edit this file, this we suggest you rename it to something
             </div>
             <div class="form-group" v-if="currentHost.server">
               <label>Host name</label>
-              <input v-model="currentHost.server.server_name" type="text" class="form-control" placeholder="Host name" :disabled="true" />
+              <input v-model="currentHost.server.server_name || currentHost.server?.[0].server_name" type="text" class="form-control" placeholder="Host name" :disabled="true" />
             </div>
             <div class="form-group">
               <label>Host</label>
@@ -540,9 +536,6 @@ If you really need to edit this file, this we suggest you rename it to something
           this.$http.get("/api/nginx_reverse").then(({
               data
             }) => {
-              console.log({
-                data
-              });
               this.hosts = data.body;
               this.isRequesting = false;
             })
@@ -646,10 +639,11 @@ If you really need to edit this file, this we suggest you rename it to something
             }).then(confirm => {
               if (confirm && confirm.isConfirmed) {
                 this.isRequesting = true;
+                const serverName = host.server?.server_name || host.server?.[0]?.server_name || host.id
                 this.$notify("Generating ssl certificate, this might take a while", 'info');
                 return this.$http
                   .put(`/api/nginx_reverse/ssl`, {
-                    host,
+                    host: serverName,
                     redirect: true
                   })
                   .then(({
@@ -687,7 +681,7 @@ If you really need to edit this file, this we suggest you rename it to something
               this.listHosts();
               $('newHostModal').modal('hide');
             }).catch((err) => {
-              console.log(err);
+              console.warn(err);
               this.displayApiError(err);
             })
             .finally(() => {
@@ -698,7 +692,41 @@ If you really need to edit this file, this we suggest you rename it to something
         displayApiError(err) {
           this.isRequesting = true;
           this.$notify(err.response && err.response.data ? (err.response.data.message || JSON.stringify(err.response.data)) : (err.response ? err.response : err), 'error');
-        }
+        },
+
+        getHostUrl(host) {
+          let url = '';
+          if (host && host.server) {
+            if (Array.isArray(host.server) && host.server[0]) {
+              url = host.server[0].server_name
+            }
+            else if (host.server.server_name) {
+              url = host.server.server_name;
+            }
+          }
+          return url;
+        },
+
+        getHostDestination(host) {
+          let url = '';
+          const server = Array.isArray(host.server) ? host.server?.[0] : host.server;
+          if (!server) {
+            return '';
+          }
+          url = server["location /"] &&
+                server["location /"].proxy_pass
+                  ? server["location /"].proxy_pass
+                  : server.root;
+
+                  if (url && url.includes('$') && server.set) {
+                    for(const entry of server.set) {
+                      const [key, value] = entry.replace(/\"/g, '').replace(/\\/g, '').replace(/\s\s+/g, ' ').split(' ');
+                      url = url.replace(key, value);
+                    }
+                  }
+          return url;
+        },
+
       },
     });
   </script>
