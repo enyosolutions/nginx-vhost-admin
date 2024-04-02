@@ -36,5 +36,5 @@ module.exports = {
   // }
 
   port: process.env.PORT || process.env.NODE_PORT || 20200,
-  appUrl: 'http://www.enyosolutions.com',
+  appUrl: '',
 };

@@ -254,7 +254,7 @@ function initNginxSite(name, options) {
       sails.log('ALL DONE '.green);
 
       if (options.ssl) {
-        await shell.exec(`sudo letsencrypt -d ${name}.enyosolutions.com
+        await shell.exec(`sudo letsencrypt -d ${name}
          --non-interactive --agree-tos --nginx  --redirect &`, (code, stdout, stderr) => {
           if (code === 0) {
             sails.sockets.broadcast(`app-devops-app-${name}`, 'ssl-installed-successfully');
