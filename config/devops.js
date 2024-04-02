@@ -5,14 +5,6 @@ module.exports = {
     configFolder: '/Users/faou/Projects',
     nginxConfigFolder: '/usr/local/etc/nginx/sites-enabled',
     servers: {
-      develop: {
-        host: '62.210.75.68',
-        username: 'jenkins',
-      },
-      blackstar: {
-        host: '163.172.81.20',
-        username: 'azuremaster',
-      },
     },
     mysql: {
       localhost: {
