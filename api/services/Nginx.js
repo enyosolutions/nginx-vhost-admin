@@ -275,7 +275,7 @@ function initNginxSite(name, options) {
 module.exports = {
   init: initNginxSite,
   async restart() {
-    let restartResult = await shell.exec('sudo nginx -t && service nginx restart');
+    let restartResult = await shell.exec('sudo nginx -t && sudo service nginx restart');
     console.log('restartResult', restartResult);
 
     if (restartResult.code > 0) {
@@ -285,7 +285,7 @@ module.exports = {
   },
 
   async reload() {
-    let restartResult = await shell.exec('sudo nginx -t && service nginx reload');
+    let restartResult = await shell.exec('sudo nginx -t && sudo service nginx reload');
     console.log('restartResult', restartResult);
 
     if (restartResult.code > 0) {
